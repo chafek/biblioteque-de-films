@@ -1,5 +1,6 @@
 <?php
 
+require ('src/model/Model.php');
 require('src/controllers/HomeController.php');
 require('src/controllers/AddFilmsController.php');
 require('src/controllers/ListFilmsController.php');

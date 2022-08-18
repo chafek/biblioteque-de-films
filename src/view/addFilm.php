@@ -29,7 +29,7 @@
                                 <div class="form-group">
                                     <input type="file" name="film_picture" value="<?php if (isset($filmToModify)) {
                                                                                         echo $filmToModify[0]['film_picture'];
-                                                                                    } ?>"">
+                                                                                    } ?>">
                                         </div>
                                         <div class=" form-group">
                                     <textarea name="film_desc" cols="8" rows="3" class="form-control" placeholder="<?php if (isset($filmToModify)) {
@@ -40,9 +40,7 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <input type="date" name="film_date" class="form-control" value="<?php  if (isset($filmToModify)) {
-                                                                                                        echo $filmToModify[0]['film_date'];
-                                                                                                    } ?>" />
+                                    <input type="date" name="film_date" class="form-control" value="<?php echo date('Y-m-d');?>" />
                                 </div>
                                 <div class="form-group">
                                     <select class="form-control" name="film_cat">

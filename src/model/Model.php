@@ -63,6 +63,7 @@ public function addFilm($title,$file,$desc,$release_date,$cat,$director,$trailer
             $release_date,
             $cat,
             $director,
+            $trailer,
             $duration
         ]);
     } catch (EXCEPTION $e) {

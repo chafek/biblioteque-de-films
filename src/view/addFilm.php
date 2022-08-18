@@ -1,5 +1,5 @@
-<?php echo date("d/m/Y");?>
 
+<?php include "src/view/include/alertBox.php";?>
 <div class="container register">
     <div class="row">
         <div class="col-md-3 register-left">
@@ -63,7 +63,7 @@
                                         <option class="hidden" selected disabled>réalisateur du film *</option>
                                         <?php for ($i = 0; $i < count($directors); $i++) {
                                             echo "
-                                                        <option value={$directors[$i]['id']}>{$directors[$i]['name']}</option>
+                                                        <option value={$directors[$i]['director_id']}>{$directors[$i]['director_name']}</option>
                                                     ";
                                         } ?>
                                     </select>

@@ -7,7 +7,7 @@ class Model{
     {
         try{
             $host='localhost';
-            $dbname='biblioteque';
+            $dbname='biblioteque_films';
             $root='root';
             $password='';
 
@@ -26,7 +26,7 @@ class Model{
 
 public function getCategories(){
     try{
-        $categorieRequest=$this->db->prepare("SELECT * FROM categorie");
+        $categorieRequest=$this->db->prepare("SELECT * FROM categories");
         $categorieRequest->execute([]);
         $categories=$categorieRequest->fetchAll();
         return $categories;
@@ -41,12 +41,32 @@ public function getCategories(){
 
 public function getDirectors(){
     try {
-        $directorsRequest=$this->db->prepare("SELECT * FROM director ");
+        $directorsRequest=$this->db->prepare("SELECT * FROM directors ");
         $directorsRequest->execute();
         $directors=$directorsRequest->fetchAll();
         return $directors;
     } catch (EXCEPTION $e) {
         var_dump($e->getMessage);
+        return false;
+    }
+}
+
+//add a film
+
+public function addFilm($title,$file,$desc,$release_date,$cat,$director,$trailer,$duration){
+    try {
+        $addFilmRequest=$this->db->prepare("INSERT INTO films(film_title,film_picture,film_desc,film_date,film_cat,film_director,film_trailer,film_duration) VALUES (?,?,?,?,?,?,?,?)");
+        $addFilmRequest->execute([
+            $title,
+            $file,
+            $desc,
+            $release_date,
+            $cat,
+            $director,
+            $duration
+        ]);
+    } catch (EXCEPTION $e) {
+        var_dump($e->getMessage());
         return false;
     }
 }

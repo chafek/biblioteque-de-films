@@ -88,7 +88,7 @@ public function displayAllFilms(){
 
 public function displayAFilm($id){
     try {
-        $filmRequest=$this->db->prepare("SELECT * FROM films WHERE film_id=?");
+        $filmRequest=$this->db->prepare("SELECT f.film_title, f.film_picture, f.film_desc,film_date,c.categorie_name,d.director_name, f.film_trailer, f.film_duration FROM `films` as f INNER JOIN `categories` as c ON f.film_cat=c.categorie_id INNER JOIN `directors` as d ON f.film_director=d.director_id WHERE f.film_id=?;");
         $filmRequest->execute([
             $id
         ]);

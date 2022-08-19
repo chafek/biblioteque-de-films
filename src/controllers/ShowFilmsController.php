@@ -1,11 +1,19 @@
 <?php
 
-class ShowFilm{
+class ShowFilm
+{
     public function __construct()
     {
-        
     }
-    public function manage(){
+    public function manage()
+    {
+
+        $model=new Model();
+        if(isset($_GET['id'])){
+            $id=$_GET['id'];
+        }
+        $filmChosen=$model->displayAFilm($id);
+
         include "src/view/include/header.php";
         include "src/view/include/nav.php";
         include 'src/view/showFilm.php';

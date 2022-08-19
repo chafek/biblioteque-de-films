@@ -99,6 +99,10 @@ class AddFilm
                         }
                         if(!empty($_FILES['film_picture']['name'])|| $upload===true){
                            $filmAded=$model->addFilm($title,$file,$desc,$date,$cat,$director,$trailer,$duration);
+                           echo '<script type="text/javascript">
+                           window.location = "http://localhost/biblioteque_films/index.php?page=list"
+                            </script>';
+
                            $msgSuccess="Enregistrement réussi!!";
                         }
                             

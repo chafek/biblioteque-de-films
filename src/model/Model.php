@@ -71,4 +71,33 @@ public function addFilm($title,$file,$desc,$release_date,$cat,$director,$trailer
         return false;
     }
 }
+
+public function displayAllFilms(){
+    try {
+        $listFilmsRequest=$this->db->prepare("SELECT * FROM films");
+        $listFilmsRequest->execute([]);
+        $listFilms=$listFilmsRequest->fetchAll();
+        return $listFilms;
+        
+    } catch (EXCEPTION $e) {
+        var_dump($e->getMessage());
+        return false;
+        //throw $th;
+    }
+}
+
+public function displayAFilm($id){
+    try {
+        $filmRequest=$this->db->prepare("SELECT * FROM films WHERE film_id=?");
+        $filmRequest->execute([
+            $id
+        ]);
+        $filmChosen=$filmRequest->fetch();
+        return $filmChosen;
+
+    } catch (EXCEPTION $e) {
+        var_dump($e->getMessage());
+        return false;
+    }
+}
 }

@@ -3,6 +3,7 @@
 class AddFilm
 {
 
+   
     public function __construct()
     {
     }
@@ -15,6 +16,7 @@ class AddFilm
         $directors = $model->getDirectors();
         if (!empty($_POST['film_title']))
         {
+        
             if (
                 empty($_POST['film_date'])
                 || $_FILES['film_picture']['name'] == ""
@@ -25,6 +27,7 @@ class AddFilm
             )
             {
                 $msgError = "merci de renseigner tous les champs!";
+              
             } 
             else
             {
@@ -113,7 +116,7 @@ class AddFilm
                 }
             }
         }
-    
+      
         include "src/view/include/header.php";
         include "src/view/include/nav.php";
         include "src/view/addFilm.php";

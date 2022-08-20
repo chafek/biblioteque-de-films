@@ -33,8 +33,13 @@
           <p>Vous pouvez organiser votre bibliotèque en fonction de vos goûts</p>
 
           <div class="mb-5">
-            <a href="#" class="btn btn-outline-primary text-black">Archiver</a>
-            <a href="#" class="btn btn-outline-danger text-black">Supprimer</a>
+            <?php if($filmChosen['film_archive']==="0"):?>
+              <a href="index.php?page=list&filter=true&toArchive=true&id=<?php echo $_GET['id'];?>" class="btn btn-outline-primary text-black">Archiver</a>
+             
+            <?php else :?>
+              <a href="index.php?page=list&toArchive=true&id=<?php echo $_GET['id'];?>" class="btn btn-outline-danger text-black">Desarchiver</a>
+            <?php endif;?>
+            <a href="index.php?page=list&id=<?php echo $_GET['id'];?>&toDelete=true" class="btn btn-outline-danger text-black">Supprimer</a>
           </div>
           <hr>
           <div>

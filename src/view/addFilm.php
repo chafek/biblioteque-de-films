@@ -1,93 +1,134 @@
-
+<div>
 <?php include "src/view/include/alertBox.php";?>
-<div class="container register">
-    <div class="row">
-        <div class="col-md-3 register-left">
-            <img src="src\public\picture\site\camera.png" alt="" />
-            <h3>Bienvenue</h3>
-            <p>Enregistrez un nouveau film dans la bibliotèque!</p>
+
+
+</div>
+
+
+
+
+<div class="container">
+    <div class="row py-5 mt-4 align-items-center">
+        <!-- For Demo Purpose -->
+        <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+            <img src="src\public\pictures\site\add.png" height="500px" width="450px" alt="" class="img-fluid mb-3 d-none d-md-block">
+            <h1>Ajouter un film</h1>
+            <p class="font-italic text-muted mb-0">Ajouter un de vos films préféré à la bibliotèque.</p>
+
+
         </div>
 
-        <div class="col-md-9 register-right">
-            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Nouveau film</a>
-                </li>
-            </ul>
+        <!--  Form -->
+        <div class="col-md-7 col-lg-6 ml-auto">
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="row">
 
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <h3 class="register-heading">Ajouter un film</h3>
-                    <form action="" method="post" enctype="multipart/form-data">
-                        <div class="row register-form">
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    <input type="text" name="film_title" class="form-control" placeholder="Titre du film *" value="<?php if (isset($filmToModify)) {
-                                                                                                                                        echo $filmToModify[0]['film_title'];
-                                                                                                                                    } ?>" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="file" name="film_picture" value="<?php if (isset($filmToModify)) {
-                                                                                        echo $filmToModify[0]['film_picture'];
-                                                                                    } ?>">
-                                        </div>
-                                        <div class=" form-group">
-                                    <textarea name="film_desc" cols="8" rows="3" class="form-control" placeholder="<?php if (isset($filmToModify)) {
-                                                                                                                        echo $filmToModify[0]['film_desc'];
-                                                                                                                    } else {
-                                                                                                                        echo 'Description du film *';
-                                                                                                                    } ?>"></textarea>
+                    <!-- Film title -->
+                    <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-video text-muted"></i>
+                            </span>
+                        </div>
+                        <input type="text" name="film_title" placeholder="Titre du film" class="form-control bg-white border-left-0 border-md">
+                    </div>
 
-                                </div>
-                                <div class="form-group">
-                                    <input type="date" name="film_date" class="form-control" value="<?php echo date('Y-m-d');?>" />
-                                </div>
-                                <div class="form-group">
-                                    <select class="form-control" name="film_cat">
-                                        <option class="hidden" <?php if (!isset($filmToModify)) {
-                                                                    echo "selected";
-                                                                } ?> disabled>catégorie du film *</option>
-                                        <?php for ($i = 0; $i < count($categories); $i++) : ?>
+                    <!-- Film picture -->
+                    <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-image text-muted"></i>
+                            </span>
+                        </div>
+                        <input type="file" name="film_picture" class="form-control bg-white border-left-0 border-md">
+                    </div>
 
-                                            <option <?php if (isset($filmToModify) && $filmToModify[0]['id_categorie'] == $categories[$i]['categorie_id']) {
+                    <!-- Film description -->
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-book-open-reader text-muted"></i>
+                            </span>
+                        </div>
+                        <textarea cols="8" rows="3" name="film_desc" placeholder="Description" class="form-control bg-white border-left-0 border-md"></textarea>
+                    </div>
+
+                    <!-- Film date release -->
+                    <div class="input-group col-lg-12 mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-calendar text-muted"></i>
+                            </span>
+                        </div>
+
+                        <input type="date" name="film_date" placeholder="" class="form-control bg-white border-md border-left-0 pl-3">
+                    </div>.
+
+
+                    <!-- Film categories -->
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-inbox text-muted"></i>
+                            </span>
+                        </div>
+                        <select name="film_cat" class="form-control custom-select bg-white border-left-0 border-md">
+                            <option class="hidden" <?php if (!isset($filmToModify)) {
                                                         echo "selected";
-                                                    } ?> value="<?php echo $categories[$i]['categorie_id']; ?>"><?= $categories[$i]['categorie_name']; ?></option>
+                                                    } ?> disabled>catégorie du film *</option>
+                            <?php for ($i = 0; $i < count($categories); $i++) : ?>
+                                <option value="<?php echo $categories[$i]['categorie_id']; ?>"><?= $categories[$i]['categorie_name']; ?></option>
+                            <?php endfor; ?>
+                        </select>
+                    </div>
 
-                                        <?php endfor; ?>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <select class="form-control" name="film_director">
-                                        <option class="hidden" selected disabled>réalisateur du film *</option>
-                                        <?php for ($i = 0; $i < count($directors); $i++) {
-                                            echo "
-                                                        <option value={$directors[$i]['director_id']}>{$directors[$i]['director_name']}</option>
-                                                    ";
-                                        } ?>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Bande annonce du film *" name="film_trailer" value="<?php if (isset($filmToModify)) {
-                                                                                                                                                    echo $filmToModify[0]['film_trailer'];
-                                                                                                                                                } ?>" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="time" min="00:00" max="23:59" name="film_duration" class="form-control" value="<?php if (isset($filmToModify)) {
-                                                                                                                                    $date = new DateTime($filmToModify[0]['film_duration']);
-                                                                                                                                    echo $date->format('H:i');
-                                                                                                                                } ?>" />
-                                </div>
+                    <!-- Film director -->
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-user text-muted"></i>
+                            </span>
+                        </div>
+                        <select name="film_director" class="form-control custom-select bg-white border-left-0 border-md">
+                            <option class="hidden" <?php if (!isset($filmToModify)) {
+                                                        echo "selected";
+                                                    } ?> disabled>réalisateur du film *</option>
+                            <?php for ($i = 0; $i < count($categories); $i++) : ?>
+                                <option value="<?= $directors[$i]['director_id']; ?>"><?= $directors[$i]['director_name']; ?></option>
+                            <?php endfor; ?>
+                        </select>
+                    </div>
 
-                                <button type="submit" class="btn btn-primary">Ajouter</button>
-                                <!--  <a class="btn btn-primary mt-4" type="submit" href="index.php?page=show&chafek=true" role="button">Ajouter</a>-->
-                                <!-- :<a href="index.php?page=show&chafek=true"type="submit" class="btnRegister"  value="ajouter">Ajouter</button>  -->
-                    </form>
+                    <!-- Film trailer -->
+                    <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-film text-muted"></i>
+                            </span>
+                        </div>
+                        <input type="text" name="film_trailer" placeholder="lien bande annonce..." class="form-control bg-white border-left-0 border-md">
+                    </div>
+
+
+                    <!-- Film duration -->
+                    <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-clock text-muted"></i>
+                            </span>
+                        </div>
+                        <input type="time" min="00:00" max="23:59" name="film_duration" class="form-control bg-white border-left-0 border-md">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-group col-lg-12 mx-auto mb-0">
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+
+
+
                 </div>
-
-            </div>
+            </form>
         </div>
     </div>
-</div>
-</div>
-</div>
 </div>

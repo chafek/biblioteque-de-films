@@ -88,12 +88,51 @@ public function displayAllFilms(){
 
 public function displayAFilm($id){
     try {
-        $filmRequest=$this->db->prepare("SELECT f.film_title, f.film_picture, f.film_desc,film_date,c.categorie_name,d.director_name, f.film_trailer, f.film_duration FROM `films` as f INNER JOIN `categories` as c ON f.film_cat=c.categorie_id INNER JOIN `directors` as d ON f.film_director=d.director_id WHERE f.film_id=?;");
+        $filmRequest=$this->db->prepare("SELECT f.film_title, f.film_picture, f.film_desc,film_date,c.categorie_name,d.director_name, f.film_trailer, f.film_duration,f.film_archive FROM `films` as f INNER JOIN `categories` as c ON f.film_cat=c.categorie_id INNER JOIN `directors` as d ON f.film_director=d.director_id WHERE f.film_id=?;");
         $filmRequest->execute([
             $id
         ]);
         $filmChosen=$filmRequest->fetch();
         return $filmChosen;
+
+    } catch (EXCEPTION $e) {
+        var_dump($e->getMessage());
+        return false;
+    }
+}
+
+public function toClassify($archiveCode,$id){
+    try {
+        $classifyResquest=$this->db->prepare('UPDATE films SET film_archive=? WHERE film_id=?');
+        $classifyResquest->execute([
+            $archiveCode,
+            $id
+        ]);
+    } catch (Exception $e) {
+        var_dump($e->getMessage());
+    }
+}
+
+public function toListFilms($arch){
+    try {
+        $listFilmRequest=$this->db->prepare("SELECT * FROM films WHERE film_archive=?");
+        $listFilmRequest->execute([
+            $arch
+        ]);
+        $films=$listFilmRequest->fetchAll();
+        return $films;
+        
+    } catch (Exception $e) {
+       var_dump($e->getMessage()); 
+    }   
+}
+public function toDeleteFilm($id){
+    try {
+        $filmToDelete=$this->db->prepare("DELETE FROM films WHERE film_id=?");
+        $filmToDelete->execute([
+            $id
+        ]);
+        return true;
 
     } catch (EXCEPTION $e) {
         var_dump($e->getMessage());

@@ -1,4 +1,4 @@
-<h1 class="text-center">Liste de films</h1>
+<h1 class="text-center"><?php if(isset($_GET['filter'])){echo "MES FILMS ARCHIVÉS";}else{echo "MES FILMS";}?></h1>
     
         <?php include "src/view/include/alertBox.php";?>
 

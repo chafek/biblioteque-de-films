@@ -184,6 +184,22 @@ public function verifyFields(){
     }
 }
 
+public function saveFilmRank($rank,$id){
+    $filmRankRequest=$this->db->prepare("UPDATE films SET film_rank=? WHERE film_id=?");
+    $filmRankRequest->execute([
+        $rank,
+        $id
+    ]);
+}
+public function displayFilmStarsRank($id){
+ $rankRequest=$this->db->prepare('SELECT film_rank FROM films WHERE film_id=?');
+ $rankRequest->execute([
+    $id
+ ]);
+ $rankNumber=$rankRequest->fetch(PDO::FETCH_ASSOC);
+ return $rankNumber;
+}
+
 public function uploadFile($picture,$title){
     $upload = true;
     $now = date('Y-m-d H-i-s');

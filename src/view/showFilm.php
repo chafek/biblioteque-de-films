@@ -1,6 +1,5 @@
 <h1 class="text-center"><?= $filmChosen['film_title']; ?></h1>
-
-<?php var_dump($filmChosen); ?>
+<?php include "src/view/include/alertBox.php"; ?>
 <div class="container ">
   <div class="row align-items-center">
     <div class="col-6 mx-auto">
@@ -16,7 +15,21 @@
           <p><?php if (!empty($filmChosen['film_desc'])) {
                 echo $filmChosen['film_desc'];
               } ?></p>
-          <a href="index.php?page=add&id=<?= $_GET['id'];?>&modify=true" class="btn btn-outline-danger text-black">Modifier</a>
+              
+          <div class="mt-3">
+            <?php $stars=isset($filmStarsNumber)?$filmStarsNumber['film_rank']:0?>
+            <?php for ($i = 0; $i < 5; $i++) : ?>
+           
+                <?php if ($stars> 0) :  ?>
+                  <img src='src/public/pictures/site/note.png' alt='rank film stars'>
+                  <?php $stars--; ?>
+                <?php else : ?>
+                  <img src='src/public/pictures/site/note_vide.png' alt='rank film stars'>
+                <?php endif; ?>
+              
+            <?php endfor; ?>
+          </div>
+          <a href="index.php?page=add&id=<?= $_GET['id']; ?>&modify=true" class="btn btn-outline-danger text-black mt-3">Modifier</a>
         </div>
       </div>
 
@@ -33,22 +46,27 @@
           <p>Vous pouvez organiser votre bibliotèque en fonction de vos goûts</p>
 
           <div class="mb-5">
-            <?php if($filmChosen['film_archive']==="0"):?>
-              <a href="index.php?page=list&filter=true&toArchive=true&id=<?php echo $_GET['id'];?>" class="btn btn-outline-primary text-black">Archiver</a>
-             
-            <?php else :?>
-              <a href="index.php?page=list&toArchive=true&id=<?php echo $_GET['id'];?>" class="btn btn-outline-danger text-black">Desarchiver</a>
-            <?php endif;?>
-            <a href="index.php?page=list&id=<?php echo $_GET['id'];?>&toDelete=true" class="btn btn-outline-danger text-black">Supprimer</a>
+            <?php if ($filmChosen['film_archive'] === "0") : ?>
+              <a href="index.php?page=list&filter=true&toArchive=true&id=<?php echo $_GET['id']; ?>" class="btn btn-outline-primary text-black">Archiver</a>
+
+            <?php else : ?>
+              <a href="index.php?page=list&toArchive=true&id=<?php echo $_GET['id']; ?>" class="btn btn-outline-danger text-black">Desarchiver</a>
+            <?php endif; ?>
+            <a href="index.php?page=list&id=<?php echo $_GET['id']; ?>&toDelete=true" class="btn btn-outline-danger text-black">Supprimer</a>
           </div>
           <hr>
           <div>
             <form action='' method='post'>
               <label for='customRange1' class='form-label'>Note</label>
-              <input name='rank_range' type='range' class='form-range-sm' min='0' max='5' id='customRange2'>
-              <button type='submit' class='btn btn-secondary btn-sm'>valider la note</button>
+              <input name='rank_range' type='range' class='form-range-sm' min='0' max='5' id='customRange2' <?php if($filmStarsNumber['film_rank']>0){echo 'disabled';}?>>
+              <button type='submit' class='btn btn-secondary btn-sm'<?php if($filmStarsNumber['film_rank']>0){echo 'disabled';}?>>valider la note</button>
+             
             </form>
+
+
+
           </div>
+
 
 
         </div>

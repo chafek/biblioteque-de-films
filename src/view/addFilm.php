@@ -6,7 +6,7 @@
 
 
 
-
+<?php var_dump($filmChosen);?>
 <div class="container">
     <div class="row py-5 mt-4 align-items-center">
         <!-- For Demo Purpose -->
@@ -30,7 +30,7 @@
                                 <i class="fa fa-video text-muted"></i>
                             </span>
                         </div>
-                        <input type="text" name="film_title" placeholder="Titre du film" class="form-control bg-white border-left-0 border-md">
+                        <input type="text" name="film_title" placeholder="Titre du film" class="form-control bg-white border-left-0 border-md" value="<?php if(isset($filmChosen)){echo $filmChosen['film_title'];}?>">
                     </div>
 
                     <!-- Film picture -->
@@ -40,7 +40,7 @@
                                 <i class="fa fa-image text-muted"></i>
                             </span>
                         </div>
-                        <input type="file" name="film_picture" class="form-control bg-white border-left-0 border-md">
+                        <input type="file" name="film_picture" class="form-control bg-white border-left-0 border-md" value="<?php if(isset($filmChosen)){echo $filmChosen['film_picture'];}?>">
                     </div>
 
                     <!-- Film description -->
@@ -50,7 +50,7 @@
                                 <i class="fa fa-book-open-reader text-muted"></i>
                             </span>
                         </div>
-                        <textarea cols="8" rows="3" name="film_desc" placeholder="Description" class="form-control bg-white border-left-0 border-md"></textarea>
+                        <textarea cols="8" rows="3" name="film_desc" placeholder="Description" class="form-control bg-white border-left-0 border-md"> <?php if(isset($filmChosen)){echo $filmChosen['film_desc'];}?></textarea>
                     </div>
 
                     <!-- Film date release -->
@@ -61,7 +61,7 @@
                             </span>
                         </div>
 
-                        <input type="date" name="film_date" placeholder="" class="form-control bg-white border-md border-left-0 pl-3">
+                        <input type="date" name="film_date" placeholder="" class="form-control bg-white border-md border-left-0 pl-3" >
                     </div>.
 
 
@@ -73,11 +73,11 @@
                             </span>
                         </div>
                         <select name="film_cat" class="form-control custom-select bg-white border-left-0 border-md">
-                            <option class="hidden" <?php if (!isset($filmToModify)) {
+                            <option class="hidden" <?php if (!isset($filmChosen)) {
                                                         echo "selected";
                                                     } ?> disabled>catégorie du film *</option>
                             <?php for ($i = 0; $i < count($categories); $i++) : ?>
-                                <option value="<?php echo $categories[$i]['categorie_id']; ?>"><?= $categories[$i]['categorie_name']; ?></option>
+                                <option value="<?php if(isset($filmChosen)){echo $filmChosen['categorie_id'];}else{echo $categories[$i]['categorie_id'];}?>"><?php if(isset($filmChosen)){echo $filmChosen['categorie_name'];}else{echo $categories[$i]['categorie_name'];}?></option>
                             <?php endfor; ?>
                         </select>
                     </div>
@@ -90,11 +90,11 @@
                             </span>
                         </div>
                         <select name="film_director" class="form-control custom-select bg-white border-left-0 border-md">
-                            <option class="hidden" <?php if (!isset($filmToModify)) {
+                            <option class="hidden" <?php if (!isset($filmChosen)){
                                                         echo "selected";
                                                     } ?> disabled>réalisateur du film *</option>
                             <?php for ($i = 0; $i < count($categories); $i++) : ?>
-                                <option value="<?= $directors[$i]['director_id']; ?>"><?= $directors[$i]['director_name']; ?></option>
+                                <option value="<?php if(isset($filmChosen)){echo $filmChosen['director_id'];}else{echo $directors[$i]['director_id'];}?>"><?php if(isset($filmChosen)){echo $filmChosen['director_name'];}else{echo $directors[$i]['director_name'];}?></option>
                             <?php endfor; ?>
                         </select>
                     </div>
@@ -106,7 +106,7 @@
                                 <i class="fa fa-film text-muted"></i>
                             </span>
                         </div>
-                        <input type="text" name="film_trailer" placeholder="lien bande annonce..." class="form-control bg-white border-left-0 border-md">
+                        <input type="text" name="film_trailer" placeholder="lien bande annonce..." class="form-control bg-white border-left-0 border-md"  value="<?php if(isset($filmChosen)){echo $filmChosen['film_trailer'];}?>">
                     </div>
 
 
@@ -117,7 +117,7 @@
                                 <i class="fa fa-clock text-muted"></i>
                             </span>
                         </div>
-                        <input type="time" min="00:00" max="23:59" name="film_duration" class="form-control bg-white border-left-0 border-md">
+                        <input type="time" min="00:00" max="23:59" name="film_duration" class="form-control bg-white border-left-0 border-md"  value="<?php if(isset($filmChosen)){echo $filmChosen['film_duration'];}?>">
                     </div>
 
                     <!-- Submit Button -->

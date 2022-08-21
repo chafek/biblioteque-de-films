@@ -6,7 +6,7 @@
     <div class="col-6 mx-auto">
       <div class="card text-center" style="height: 35rem;">
         <div class="ratio ratio-16x9">
-          <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title="YouTube video" allowfullscreen></iframe>
+          <iframe src="<?= $filmChosen['film_trailer']; ?>" title="YouTube video" allowfullscreen></iframe>
         </div>
         <div class="card-body">
           <h5 class="card-title"><?= $filmChosen['film_title']; ?></h5>
@@ -16,7 +16,7 @@
           <p><?php if (!empty($filmChosen['film_desc'])) {
                 echo $filmChosen['film_desc'];
               } ?></p>
-          <a href="#" class="btn btn-outline-danger text-black">Modifier</a>
+          <a href="index.php?page=add&id=<?= $_GET['id'];?>&modify=true" class="btn btn-outline-danger text-black">Modifier</a>
         </div>
       </div>
 

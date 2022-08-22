@@ -7,16 +7,23 @@
 <div class="container">
     <div class="row py-5 mt-4 align-items-center">
         <!-- For Demo Purpose -->
-        <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
-            <img src="src\public\pictures\site\add.png" height="500px" width="450px" alt="" class="img-fluid mb-3 d-none d-md-block">
-            <h1>Ajouter un film</h1>
-            <p class="font-italic text-muted mb-0">Ajouter un de vos films préféré à la bibliotèque.</p>
+        <?php if(!isset($_GET['modify'])):?>
+            <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+                <img src="src\public\pictures\site\add.png" height="500px" width="450px" alt="" class="img-fluid mb-3 d-none d-md-block">
+                <h1>Ajouter un film</h1>
+                <p class="font-italic text-muted mb-0">Ajouter un de vos films préféré à la bibliotèque.</p>
+            </div>
+        <?php else:?>
+            <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+                <img src="src\public\films_files\<?php echo $filmChosen['film_picture'];?>" class="shadow p-3 mb-5 bg-body rounded"  height="500px" width="450px" alt="" class="img-fluid mb-3 d-none d-md-block">
+                <h3>Modifier '<?= $filmChosen['film_title'];?>'!</h3>
+                <p class="font-italic text-muted mb-0">Faites quelques modifications à votre film.</p>
+            </div>
 
-
-        </div>
+        <?php endif;?>
 
         <!--  Form -->
-        <div class="col-md-7 col-lg-6 ml-auto">
+        <div class="col-md-7 col-lg-6 ml-auto shadow p-3 mb-5 bg-body rounded">
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="row">
 
@@ -58,7 +65,7 @@
                             </span>
                         </div>
 
-                        <input type="date" name="film_date" placeholder="" class="form-control bg-white border-md border-left-0 pl-3" >
+                        <input type="date" name="film_date" placeholder="" class="form-control bg-white border-md border-left-0 pl-3" value="<?php if(isset($filmChosen)){echo $filmChosen['film_date'];}?>" >
                     </div>.
 
 
@@ -119,7 +126,7 @@
 
                     <!-- Submit Button -->
                     <div class="form-group col-lg-12 mx-auto mb-0">
-                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                        <button type="submit" class="btn btn-primary"><?php if(isset($_GET['modify'])){echo 'Modifier';}else{echo 'Ajouter';}?></button>
                     </div>
 
 

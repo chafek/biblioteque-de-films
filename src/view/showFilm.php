@@ -1,9 +1,9 @@
-<h1 class="text-center"><?= $filmChosen['film_title']; ?></h1>
+<h1 class="text-center mb-5"><?= $filmChosen['film_title']; ?></h1>
 <?php include "src/view/include/alertBox.php"; ?>
-<div class="container ">
+<div class="container mb-5">
   <div class="row align-items-center">
     <div class="col-6 mx-auto">
-      <div class="card text-center" style="height: 35rem;">
+      <div class="card text-center" style="height: 40rem;">
         <div class="ratio ratio-16x9">
           <iframe src="<?= $filmChosen['film_trailer']; ?>" title="YouTube video" allowfullscreen></iframe>
         </div>
@@ -37,7 +37,7 @@
 
     </div>
     <div class="col-6 mx-auto">
-      <div class="card text-center" style="height: 35rem;">
+      <div class="card text-center" style="height: 40rem;">
         <div class="ratio ratio-16x9">
           <img src="src\public\pictures\site\rank.svg" class="card-img-top" alt="...">
         </div>
@@ -57,9 +57,9 @@
           <hr>
           <div>
             <form action='' method='post'>
-              <div class="row ">
-                <div class="col-5 text-center">
-                  <label for='customRange1' class='form-label '>N0TE =</label><span id="rangeval"> </span>
+              <div class="row d-flex justify-content-center">
+                <div class="col-5 ">
+                  <label for='customRange1' class='form-label '>N0TER =</label><span id="rangeval"> </span>
                   <input name='rank_range' type='range' class='form-range-sm mt-1'  min='0' max='5' id='customRange1' <?php if($filmStarsNumber['film_rank']>0){echo 'disabled';}?> onchange="document.getElementById('rangeval').innerText=document.getElementById('customRange1').value"> 
                   
                   <button type='submit' class='btn btn-secondary btn-sm'<?php if($filmStarsNumber['film_rank']>0){echo 'disabled';}?>>valider la note</button>

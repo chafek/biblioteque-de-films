@@ -7,16 +7,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php?page=home">Home</a>
+            <a class="nav-link active" aria-current="page" href="index.php?page=home">ACCEUIL</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="index.php?page=add">Ajouter un film</a>
+            <a class="nav-link" href="index.php?page=add">AJOUTER UN FILM</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="index.php?page=list">Films non archivés</a>
+            <a class="nav-link" href="index.php?page=list">FILM NON ARCHIVES</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="index.php?page=list&filter=true">Films archivés</a>
+            <a class="nav-link" href="index.php?page=list&filter=true">FILMS ARCHIVES</a>
         </li>
 
       </ul>

@@ -57,10 +57,17 @@
           <hr>
           <div>
             <form action='' method='post'>
-              <label for='customRange1' class='form-label'>Note</label>
-              <input name='rank_range' type='range' class='form-range-sm' min='0' max='5' id='customRange2' <?php if($filmStarsNumber['film_rank']>0){echo 'disabled';}?>>
-              <button type='submit' class='btn btn-secondary btn-sm'<?php if($filmStarsNumber['film_rank']>0){echo 'disabled';}?>>valider la note</button>
-             
+              <div class="row ">
+                <div class="col-5 text-center">
+                  <label for='customRange1' class='form-label '>N0TE =</label><span id="rangeval"> </span>
+                  <input name='rank_range' type='range' class='form-range-sm mt-1'  min='0' max='5' id='customRange1' <?php if($filmStarsNumber['film_rank']>0){echo 'disabled';}?> onchange="document.getElementById('rangeval').innerText=document.getElementById('customRange1').value"> 
+                  
+                  <button type='submit' class='btn btn-secondary btn-sm'<?php if($filmStarsNumber['film_rank']>0){echo 'disabled';}?>>valider la note</button>
+                </div>
+               
+              </div>
+          
+   
             </form>
 
 

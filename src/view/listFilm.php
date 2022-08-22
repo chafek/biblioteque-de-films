@@ -3,6 +3,7 @@
         <?php include "src/view/include/alertBox.php";?>
 
         <div class="row row-cols-1 row-cols-md-3 g-4">
+           
             <?php foreach ($films as $film) : ?>
                 <div class="col">
           

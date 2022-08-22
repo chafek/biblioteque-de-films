@@ -13,3 +13,9 @@ if(!empty($msgError)){
     $msgError
 </div>";
 }
+if(!empty($msgInfo)){
+    echo "
+    <div class='alert alert-info' role='alert'>
+    $msgInfo
+</div>";
+}

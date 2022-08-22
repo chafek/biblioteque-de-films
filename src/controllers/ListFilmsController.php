@@ -30,6 +30,7 @@ class ListFilm{
         }
         
         $films=$model->toListFilms($archive);
+        if(count($films)===0){$msgInfo="Pas de film à gérer !";}
         
         include "src/view/include/header.php";
         include "src/view/include/nav.php";

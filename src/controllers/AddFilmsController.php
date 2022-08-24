@@ -36,13 +36,20 @@ class AddFilm
         // }
     
 
-   
+                
+                
         if (isset($_POST['film_title']) && !isset($_GET['modify']))
         {
-            $verification=$model->verifyFields();
-           
-        
-            if ($verification==false
+            $cat = empty($_POST['film_cat']) ? null : $_POST['film_cat'];
+            $director = empty($_POST['film_director']) ? null : $_POST['film_director'];
+            $trailer=empty($_POST['film_trailer']) ? null : $_POST['film_trailer'];
+            $duration = empty($_POST['film_duration']) ? null : $_POST['film_duration'];
+            $verification=$model->verifyFields([$cat,
+                                    $director,$trailer,$duration]);
+                var_dump($verification);
+              
+               
+            if ($verification===false||$_FILES['film_picture']['name'] == ""
             )
             {
                 $msgError = "merci de renseigner tous les champs!";
@@ -126,6 +133,8 @@ class AddFilm
                             </script>';
 
                            $msgSuccess="Enregistrement réussi!!";
+                           echo $msgSuccess;
+                           die();
                         }
                             
                     }
@@ -139,18 +148,15 @@ class AddFilm
         if(isset($_GET['modify']) )
         {
             $filmChosen=$model->displayAFilm($_GET['id']);
-            
-           
-           
-                
-            //     // die();
+ 
             if(isset($_POST['film_title'])){
-                $verification=$model->verifyFields();
-                if($verification){
+                $verification=$model->verifyFields([$_POST['film_cat'],
+                $_POST['film_director'],$_POST['film_trailer'],$_POST['film_duration']]);
+                if($verification===false){
+                     $msgError="saisissez tous les champs !";
+                }else{
                     $model->toModifyFilm($_GET['id'],$_POST['film_title'],$filmChosen['film_picture'],$_POST['film_desc'],$_POST['film_date'],$_POST['film_cat'],$_POST['film_director'],$_POST['film_trailer'],$_POST['film_duration']);
                     $msgSuccess="reussi";
-                }else{
-                    $msgError="saisissez tous les champs !";
                 }
                
                 

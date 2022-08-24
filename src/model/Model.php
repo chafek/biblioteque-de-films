@@ -166,22 +166,17 @@ public function toModifyFilm($id,$title,$picture,$desc,$date,$cat,$director,$tra
     }
 }
 
-public function verifyFields(){
-    
-    if (
-        empty($_POST['film_date'])
-        || $_FILES['film_picture']['name'] == ""
-        || empty($_POST['film_cat'])
-        || empty($_POST['film_director'])
-        || empty($_POST['film_trailer'])
-        || empty($_POST['film_duration'])
-    )
-    {
-      return false;
-      
-    } else{
-        return true;
+public function verifyFields($fields=[]){
+  
+    foreach ($fields as  $field) {
+
+        if (empty($field)|| $field===""){
+          
+           return false;
+        
+        }
     }
+
 }
 
 public function saveFilmRank($rank,$id){

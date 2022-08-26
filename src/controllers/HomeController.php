@@ -50,33 +50,35 @@ class Home{
        
         if($verification===false){
             $msgError="Veuillez remplir tous les champs!"; 
-        
         }
+        //case registratin
          if(filter_input(INPUT_POST,'password_confirmation') && $_POST['password']===$_POST['password_confirmation']){
             $email=$_POST['email'];
             $password=password_hash($_POST['password'],PASSWORD_DEFAULT);
             $model->userRegistration($email,$password);
+            header("Location:http://localhost/biblioteque_films/index.php?page=list");
             $msgSuccess= "Votre profil a été enregistré..";
-        
-            
             $registration_success=true;
-         }
-         if(!isset($_GET['action']) && filter_input(INPUT_POST,'password')){
             
+         }
+
+         //case connexion
+         if(!isset($_GET['action']) && filter_input(INPUT_POST,'password'))
+         {
             $checkConnexion=$model->userConnexion($_POST['email'],$_POST['password']);
-;
-           if(isset($checkConnexion)){
-   
-                $registration_success=true;
+           if(isset($checkConnexion))
+           {
+                $msgSuccess= "Vous êtes connecté.";
+                header("Location:http://localhost/biblioteque_films/index.php?page=list");
                 
-           }
-         
+                $registration_success=true;
+           }    
          }
-         if(filter_input(INPUT_GET,'logout')){
-            
+
+         //case logout
+         if(filter_input(INPUT_GET,'logout'))
+         { 
             session_unset();
-  
-            
           }
      
         include "src/view/include/header.php";

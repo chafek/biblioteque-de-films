@@ -30,6 +30,7 @@
             <?php endfor; ?>
           </div>
           <a href="index.php?page=add&id=<?= $_GET['id']; ?>&modify=true" class="btn btn-outline-danger text-black mt-3">Modifier</a>
+          <a href="http://localhost/biblioteque_films/index.php?page=list" class="btn btn-outline-primary text-black mt-3"   role="button" >Retour à la liste</a>
         </div>
       </div>
 

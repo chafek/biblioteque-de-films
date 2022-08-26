@@ -1,8 +1,11 @@
 
-<?php if(isset($_POST['submit'])){
+<?php 
+  
+   var_dump($_SESSION) ;
+
+if(isset($_POST['submit'])){
  
-include 'src\view\include\alertBox.php';}
- ?>
+include 'src\view\include\alertBox.php';}?>
 
 <h1 class="text-center mt-4 title" >Acceuil</h1>
 

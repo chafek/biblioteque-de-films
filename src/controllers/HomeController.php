@@ -1,5 +1,9 @@
-<?php
-
+<?php 
+ 
+ if(!isset($_SESSION)){
+    session_start();
+ }
+// var_dump($_SESSION['email']);
 class Home{
     public function __construct()
     {
@@ -7,8 +11,9 @@ class Home{
     }
     
     public function manage(){
-
+       
         $model=new Model();
+        // two array with own property depends on the status connection or registration
         $connection=[
             'text'=>"Pour gére vos films, vous devez vous connecter.",
             'title'=>"Se connecter",
@@ -34,26 +39,49 @@ class Home{
                         </div>",
             'button_text'=>'Enregistrer'
         ];
-        var_dump($_POST);
+        
+        //verification if fields are empty
+
         $email=isset($_POST['email'])?$_POST['email']:null;
         $password=isset($_POST['password'])?$_POST['password']:null;
         $password_confirmation=isset($_POST['password_confirmation'])?$_POST['password_confirmation']:null;
         
-        if(isset($_POST['password_confirmation'])){
-            $verification=$model->verifyFields([$email,$password,$password_confirmation]);
-        }else{
-            $verification=$model->verifyFields([$email,$password]);
-        }
+        isset($_POST['password_confirmation'])?$verification=$model->verifyFields([$email,$password,$password_confirmation]): $verification=$model->verifyFields([$email,$password]);
        
         if($verification===false){
-            $msgError="Veuillez remplir tous les champs!";
-           
-        }else{
-            $msgSuccess="tous les champs sont saisi.";
-        }     
-
+            $msgError="Veuillez remplir tous les champs!"; 
+        
+        }
+         if(filter_input(INPUT_POST,'password_confirmation') && $_POST['password']===$_POST['password_confirmation']){
+            $email=$_POST['email'];
+            $password=password_hash($_POST['password'],PASSWORD_DEFAULT);
+            $model->userRegistration($email,$password);
+            $msgSuccess= "Votre profil a été enregistré..";
+        
+            
+            $registration_success=true;
+         }
+         if(!isset($_GET['action']) && filter_input(INPUT_POST,'password')){
+            
+            $checkConnexion=$model->userConnexion($_POST['email'],$_POST['password']);
+;
+           if(isset($checkConnexion)){
+   
+                $registration_success=true;
+                
+           }
+         
+         }
+         if(filter_input(INPUT_GET,'logout')){
+            
+            session_unset();
+  
+            
+          }
+     
         include "src/view/include/header.php";
         include "src/view/include/nav.php";
+
         include 'src/view/home.php';
         include "src/view/include/footer.php";
     }

@@ -1,3 +1,4 @@
+<?php include "src/view/include/alertBox.php";?>
 <h1 class="text-center"><?php if (isset($_GET['filter'])) {
                             echo "MES FILMS ARCHIVÉS";
                         } else {

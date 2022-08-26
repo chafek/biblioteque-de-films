@@ -16,6 +16,7 @@ class Model{
         }
 
         $this->db=new PDO("mysql:host=$host;dbname=$dbname;charset=utf8",$root,$password,array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+       
     }
 
     public function manage(){
@@ -167,19 +168,28 @@ public function toModifyFilm($id,$title,$picture,$desc,$date,$cat,$director,$tra
 }
 
 public function verifyFields($fields=[]){
-  
-    foreach ($fields as  $field) {
+  try {
+        foreach ($fields as  $field) {
 
-        if (empty($field)|| $field===""){
-          
-           return false;
-        
+            if (empty($field)|| $field===""){
+            
+            return false;
+            
+            }
         }
+    } catch (EXCEPTION $e) {
+        var_dump($e->getMessage());
+        return false;
     }
-
 }
 
 public function saveFilmRank($rank,$id){
+    try {
+
+
+    } catch (EXCEPTION $e) {
+        var_dump($e->getMessage());
+    }
     $filmRankRequest=$this->db->prepare("UPDATE films SET film_rank=? WHERE film_id=?");
     $filmRankRequest->execute([
         $rank,
@@ -187,7 +197,12 @@ public function saveFilmRank($rank,$id){
     ]);
 }
 public function displayFilmStarsRank($id){
- $rankRequest=$this->db->prepare('SELECT film_rank FROM films WHERE film_id=?');
+ try {
+
+ } catch (EXCEPTION $e) {
+    var_dump($e->getMessage());
+ }
+    $rankRequest=$this->db->prepare('SELECT film_rank FROM films WHERE film_id=?');
  $rankRequest->execute([
     $id
  ]);
@@ -196,6 +211,12 @@ public function displayFilmStarsRank($id){
 }
 
 public function uploadFile($picture,$title){
+    try {
+
+
+    } catch (EXCEPTION $e) {
+        var_dump($e->getMessage());
+    }
     $upload = true;
     $now = date('Y-m-d H-i-s');
     $targetFile="src/public/films_files/";
@@ -248,5 +269,31 @@ public function uploadFile($picture,$title){
             $msgError='Echec de l upload,merci de réessayer!';
         }
 }
+}
+
+public function userRegistration($email,$password){
+    try {
+        $userRegistrationRegister=$this->db->prepare("INSERT INTO users (user_email,user_password) VALUES(?,?)"); 
+        $userRegistrationRegister->execute([
+        $email,
+        $password
+    ]);
+
+    } catch (EXCEPTION $e) {
+        var_dump($e->getMessage());
+    }
+}
+public function userConnexion($email,$password){
+    try {
+        $userConnexionRequest=$this->db->prepare("SELECT * FROM users WHERE user_email=? AND user_password=?");
+        $userConnexionRequest->execute([
+            $email,
+            $password
+        ]);
+        $userConnexion= $userConnexionRequest->fetch();
+        return $userConnexion;
+    } catch (EXCEPTION $e) {
+        var_dump($e->getMessage());
+    }
 }
 }

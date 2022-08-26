@@ -11,3 +11,12 @@
     <title>bibliotèque</title>
 </head>
 <body>
+    <?php
+      
+        
+        if(isset($registration_success)&& isset($_POST['password'])){
+                $_SESSION['email']=$_POST['email'];
+        } 
+      
+        
+        ?>

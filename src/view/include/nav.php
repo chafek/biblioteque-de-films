@@ -3,12 +3,12 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light ">
    
         
-        <img src="src\public\pictures\site\biblioteque_logo.png" height="80px" width="80px"  alt="logo"><h3 class="navbar-brand ms-3 mt-2 me-5" href="#" >La bibliotèque</h3>
+        <a href="http://localhost/biblioteque_films/index.php?page=home"><img src="src\public\pictures\site\biblioteque.png" height="80px" width="80px"  alt="logo"><h3 class="navbar-brand ms-3 mt-2 me-5" href="#" ></a>La bibliotèque</h3>
 
       <div class="col-8 ms-5">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center">
             <li class="nav-item  me-3">
-                <a class="nav-link active" aria-current="page" href="index.php?page=home">ACCEUIL</a>
+                <a class=" nav-link active" aria-current="page" href="index.php?page=home">ACCEUIL</a>
             </li>
             <li class="nav-item me-3">
                 <a class="nav-link <?php if(!isset($_SESSION['email'])){echo 'disabled';}?>" href="index.php?page=add" >AJOUTER UN FILM</a>

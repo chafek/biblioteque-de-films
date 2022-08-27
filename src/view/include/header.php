@@ -8,15 +8,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="src\public\style.css">
     <script src="https://kit.fontawesome.com/e9dd70ebde.js" crossorigin="anonymous"></script>
+    
     <title>bibliotèque</title>
 </head>
 <body>
     <?php
-      
-        
         if(isset($registration_success)&& isset($_POST['password'])){
                 $_SESSION['email']=$_POST['email'];
         } 
-      
-        
-        ?>
+    ?>

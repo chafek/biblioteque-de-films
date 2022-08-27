@@ -1,8 +1,6 @@
 
 <?php 
   
-   var_dump($_SESSION) ;
-
 if(isset($_POST['submit'])){
  
 include 'src\view\include\alertBox.php';}?>
@@ -46,15 +44,11 @@ include 'src\view\include\alertBox.php';}?>
             
             <!-- Checkbox -->
             <?=$content['action'];?>
-     
+            
             <input type="hidden" id="submit" name="submit" value="">
-
           <div class="text-center text-lg-start mt-4 pt-2">
           <button class="btn btn-primary btn-lg"  type="submit" style="padding-left: 2.5rem; padding-right: 2.5rem;" ><?=$content['button_text'];?></button>
-          
-              
-
-         
+             <!-- have to modify this block below if registration-->
             <p class="small fw-bold mt-2 pt-1 mb-0">Pas de compte? <a href="index.php?page=home&action=register"
                 class="link-danger">Inscription</a></p>
           </div>
@@ -65,4 +59,3 @@ include 'src\view\include\alertBox.php';}?>
   </div>
  
 </section>
-<!--<img class="home_img" src="src\public\pictures\site\acceuil.png" alt="" > -->

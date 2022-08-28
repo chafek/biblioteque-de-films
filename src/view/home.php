@@ -46,11 +46,13 @@ include 'src\view\include\alertBox.php';}?>
             <?=$content['action'];?>
             
             <input type="hidden" id="submit" name="submit" value="">
-          <div class="text-center text-lg-start mt-4 pt-2">
-          <button class="btn btn-primary btn-lg"  type="submit" style="padding-left: 2.5rem; padding-right: 2.5rem;" ><?=$content['button_text'];?></button>
+          <div class="text-center text-lg-start  pt-2">
+          <button class="btn btn-primary btn-lg mb-4"  type="submit" style="padding-left: 2.5rem; padding-right: 2.5rem;" ><?=$content['button_text'];?></button>
              <!-- have to modify this block below if registration-->
-            <p class="small fw-bold mt-2 pt-1 mb-0">Pas de compte? <a href="index.php?page=home&action=register"
-                class="link-danger">Inscription</a></p>
+             <?php if(!isset($_GET['action'])):?>
+            <p class="small fw-bold mt-2 pt-1 mb-3">Pas de compte? <a href="index.php?page=home&action=register"
+                class="link-danger mb-3">Inscription</a></p>
+              <?php endif;?>
           </div>
 
         </form>

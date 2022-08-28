@@ -9,13 +9,13 @@
         <!-- For Demo Purpose -->
         <?php if(!isset($_GET['modify'])):?>
             <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
-                <img src="src\public\pictures\site\add.png" height="500px" width="450px" alt="" class="img-fluid mb-3 d-none d-md-block">
+                <img src="src\public\pictures\site\add.png"  alt="" class="img-fluid mb-3 d-none d-md-block">
                 <h1>Ajouter un film</h1>
                 <p class="font-italic text-muted mb-0">Ajouter un de vos films préféré à la bibliotèque.</p>
             </div>
         <?php else:?>
             <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
-                <img src="src\public\films_files\<?php echo $filmChosen['film_picture'];?>" class="shadow p-3 mb-5 bg-body rounded"  height="500px" width="450px" alt="" class="img-fluid mb-3 d-none d-md-block">
+                <img src="src\public\films_files\<?php echo $filmChosen['film_picture'];?>" class=" img-fluid shadow p-3 mb-5 bg-body rounded"  height="500px" width="450px" alt="" class="img-fluid mb-3 d-none d-md-block">
                 <h3>Modifier '<?= $filmChosen['film_title'];?>'!</h3>
                 <p class="font-italic text-muted mb-0">Faites quelques modifications à votre film.</p>
             </div>
